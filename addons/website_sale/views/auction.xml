@@ -33,9 +33,9 @@
             <field name="name">Finished auctions</field>
             <field name="model">finish.auctions</field>
             <field name="arch" type="xml">
-                <form string="Finish auction">
+                <form create="false" edit="false" string="Finish auction">
                     <sheet>
-                        <tree toolbar="1">
+                        <tree create="false" toolbar="1">
                             <label for="name" class="oe_edit_only" string="Finish"/>
                             <h2><field string="Auction" name="auction_finish"/></h2>
                             <group>
@@ -46,6 +46,23 @@
                             <field name="description" string="Description"/>
                         </tree>
                     </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tracker_view_auctions" model="ir.ui.view"><!--//create view form-->
+            <field name="name">Tracker auctions</field>
+            <field name="model">like.bits</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" string="Auction tracker">
+                    <tree string="Tracker">
+                        <group>
+                            <field string="Product" name="product"/>
+                            <field string="User name" name="user_name"/>
+                            <field string="User bet" name="u_bit"/>
+                            <field string="Date of bet" name="date_bit"/>
+                        </group>
+                    </tree>
                 </form>
             </field>
         </record>
@@ -69,7 +86,7 @@
             <field name="name">New Bits tree</field>
             <field name="model">like.bits</field>
             <field name="arch" type="xml">
-                <tree string="Bits">
+                <tree string="Bits" create="false" edit="false">
                     <field name="product"/>
                     <field name="user_name"/>
                     <field name="u_bit"/>
@@ -82,7 +99,7 @@
             <field name="name">Finish auctions tree</field>
             <field name="model">finish.auctions</field>
             <field name="arch" type="xml">
-                <tree string="Finish" fonts="bold:True">
+                <tree string="Finish" fonts="bold:True" create="false" edit="false">
                     <field string="Action" name="auction_finish"/>
                     <field string="User win" name="user_win"/>
                     <field string="User bet" name="user_bet"/>
