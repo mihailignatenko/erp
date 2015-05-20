@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="new_auction" model="ir.ui.view"><!--//create view form-->
+            <field name="name">Auction</field>
+            <field name="model">auction.edit</field>
+            <field name="arch" type="xml">
+                <form string="Auction">
+                    <sheet>
+                       <tree toolbar="1">
+                                    <label for="name" class="oe_edit_only" string="Auction name"/>
+                                    <h1>
+                                        <field string="Auction name" name="auction_name"/>
+                                    </h1>
+                                    <group>
+                                        <field string="Active" name="is_active"/>
+                                        <field string="Start Auction" name="start_auction_date_time"/>
+                                        <field string="Stop Auction" name="stop_auction_date_time"/>
+                                        <field string="Step between bets" name="step"/>
+                                        <field string="Days" name="days"/>
+                                        <field name="minimum_bid"/>
+                                        <field string="Product" name="products"/>
+                                    </group>
+                                   <separator string="Description" colspan="4"/>
+                                    <field name="description_auction"/>
+                       </tree>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="finish_view_auctions" model="ir.ui.view"><!--//create view form-->
+            <field name="name">Finished auctions</field>
+            <field name="model">finish.auctions</field>
+            <field name="arch" type="xml">
+                <form string="Finish auction">
+                    <sheet>
+                        <tree toolbar="1">
+                            <label for="name" class="oe_edit_only" string="Finish"/>
+                            <h2><field string="Auction" name="auction_finish"/></h2>
+                            <group>
+                                <field string="User win" name="user_win"/>
+                                <field string="User bet" name="user_bet"/>
+                            </group>
+                            <separator string="Description" colspan="4"/>
+                            <field name="description" string="Description"/>
+                        </tree>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="new_auctions_tree" model="ir.ui.view"><!--//create view tree-->
+            <field name="name">New Auctions tree</field>
+            <field name="model">auction.edit</field>
+            <field name="arch" type="xml">
+                    <tree string="Auctions">
+                        <field name="id"/>
+                        <field name="auction_name"/>
+                        <field string="Products" name="products"/>
+                        <field name="start_auction_date_time"/>
+                        <field name="stop_auction_date_time"/>
+                        <field name="minimum_bid"/>
+                    </tree>
+            </field>
+        </record>
+
+        <record id="new_bits_tree" model="ir.ui.view"><!--//create view tree-->
+            <field name="name">New Bits tree</field>
+            <field name="model">like.bits</field>
+            <field name="arch" type="xml">
+                <tree string="Bits">
+                    <field name="product"/>
+                    <field name="user_name"/>
+                    <field name="u_bit"/>
+                    <field name="date_bit"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="finish_tree" model="ir.ui.view"><!--//create view tree-->
+            <field name="name">Finish auctions tree</field>
+            <field name="model">finish.auctions</field>
+            <field name="arch" type="xml">
+                <tree string="Finish" fonts="bold:True">
+                    <field string="Action" name="auction_finish"/>
+                    <field string="User win" name="user_win"/>
+                    <field string="User bet" name="user_bet"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="new_auction_action" model="ir.actions.act_window">
+            <field name="name">New Auction</field>
+            <field name="res_model">auction.edit</field>
+            <field name="view_model">tree,from</field>
+        </record>
+
+        <record id="new_bits_tracker_action" model="ir.actions.act_window">
+            <field name="name">New Auction tracker</field>
+            <field name="res_model">like.bits</field>
+            <field name="view_model">tree,from,calendar</field>
+        </record>
+
+        <record id="new_finish_auctions_action" model="ir.actions.act_window">
+            <field name="name">Finished auctions</field>
+            <field name="res_model">finish.auctions</field>
+            <field name="view_model">tree,from,calendar</field>
+        </record>
+
+        <menuitem name="Auctions" id="auctions_menu" sequence="90"/><!-- Show panel menu -->
+            <menuitem name="Auctions category" id="auction_category" sequence="10" parent="auctions_menu"/>
+                <menuitem name="Auctions list" id="auctions_list" sequence="10" parent="auction_category" action="new_auction_action"/>
+                <menuitem name="Auctions tracker" id="auctions_tracker" sequence="10" parent="auction_category" action="new_bits_tracker_action"/>
+                <menuitem name="Finished auctions" id="finished_auctions" sequence="10" parent="auction_category" action="new_finish_auctions_action"/>
+    </data>
+</openerp>
