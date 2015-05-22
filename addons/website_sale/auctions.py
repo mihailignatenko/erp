@@ -32,7 +32,6 @@ class Auctions(models.Model):
         if self.stop_auction_date_time == fields.Date.today():
             self.is_active = False
 
-
     @api.one
     @api.constrains('start_auction_date_time', 'stop_auction_date_time')
     def check_field_dates_rights(self):

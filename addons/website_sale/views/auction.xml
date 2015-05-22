@@ -71,8 +71,9 @@
             <field name="name">New Auctions tree</field>
             <field name="model">auction.edit</field>
             <field name="arch" type="xml">
-                    <tree string="Auctions">
+                    <tree colors="gray:is_active==Falsegit" string="Auctions">
                         <field name="id"/>
+                        <field name="is_active" invisible="1"/>
                         <field name="auction_name"/>
                         <field string="Products" name="products"/>
                         <field name="start_auction_date_time"/>
