@@ -108,22 +108,31 @@
             </field>
         </record>
 
-        <record id="new_auction_action" model="ir.actions.act_window">
-            <field name="name">New Auction</field>
-            <field name="res_model">auction.edit</field>
-            <field name="view_model">tree,from</field>
+        <record id="view_calendar_auction" model="ir.ui.view">
+            <field name="name">view_calendar_auction</field>
+            <field name="model">auction.edit</field>
+            <field name="arch" type="xml">
+                <calendar string="auction_name" date_start="start_auction_date_time" date_stop="stop_auction_date_time" color="id">
+                    <field name="auction_name"/>
+                </calendar>
+            </field>
         </record>
+
+        <act_window id="new_auction_action"
+                    name="New Auction"
+                    res_model="auction.edit"
+                    view_mode="tree,form,calendar"/>
 
         <record id="new_bits_tracker_action" model="ir.actions.act_window">
             <field name="name">New Auction tracker</field>
             <field name="res_model">like.bits</field>
-            <field name="view_model">tree,from,calendar</field>
+            <field name="view_model">tree,from</field>
         </record>
 
         <record id="new_finish_auctions_action" model="ir.actions.act_window">
             <field name="name">Finished auctions</field>
             <field name="res_model">finish.auctions</field>
-            <field name="view_model">tree,from,calendar</field>
+            <field name="view_model">tree,from</field>
         </record>
 
         <menuitem name="Auctions" id="auctions_menu" sequence="90"/><!-- Show panel menu -->
